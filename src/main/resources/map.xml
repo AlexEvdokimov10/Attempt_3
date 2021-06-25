@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="ru.Autopark" table="autopark" schema="autopark">
+        <id name="code">
+            <column name="code" sql-type="int(11)"/>
+        </id>
+        <property name="name">
+            <column name="name" sql-type="varchar(5)" length="5"/>
+        </property>
+        <property name="count_places">
+            <column name="count_places" sql-type="int(11)"/>
+        </property>
+    </class>
+    <class name="ru.Cars" table="cars" schema="autopark">
+        <id name="code">
+            <column name="code" sql-type="int(11)"/>
+        </id>
+        <property name="number">
+            <column name="number" sql-type="int(11)"/>
+        </property>
+        <property name="places">
+            <column name="places" sql-type="int(11)"/>
+        </property>
+        <many-to-one name="codeOwner" column="code_owner" class="ru.Owners" cascade="save-update"/>
+        <many-to-one name="codeAutopark" column="code_autopark" class="ru.Autopark" cascade="save-update"/>
+    </class>
+    <class name="ru.Owners" table="owners" schema="autopark">
+        <id name="code">
+            <column name="code" sql-type="int(11)"/>
+        </id>
+        <property name="name">
+            <column name="name" sql-type="varchar(30)" length="30"/>
+        </property>
+
+
+    </class>
+</hibernate-mapping>
